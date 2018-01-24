@@ -38,7 +38,7 @@ $(document).ready(function()
 			$(this).css("text-decoration","underline");
 		},
 		word_mouseOut :function(){
-			$(this).css("text-decoration","normal");	
+			$(this).css("text-decoration","none");	
 		},
 		word_click: function(){ 			
 			alert("You have selected:" +$(this).text());
