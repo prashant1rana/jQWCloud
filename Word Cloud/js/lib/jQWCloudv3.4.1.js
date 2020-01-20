@@ -219,10 +219,10 @@ WordCloud.prototype = {
 				if(this.options.word_common_classes!=null)
 					$(wordObj.span).addClass(this.options.word_common_classes);
 				
-				$(wordObj.span).live("click",this.options.word_click);
-				$(wordObj.span).live("mouseover",this.options.word_mouseOver);
-				$(wordObj.span).live("mouseout",this.options.word_mouseOut);
-				$(wordObj.span).live("mouseenter",this.options.word_mouseEnter);
+				$(wordObj.span).on("click",this.options.word_click);
+				$(wordObj.span).on("mouseover",this.options.word_mouseOver);
+				$(wordObj.span).on("mouseout",this.options.word_mouseOut);
+				$(wordObj.span).on("mouseenter",this.options.word_mouseEnter);
 				
 				if(index==0)
 					this._placeFirstWord(wordObj);
@@ -449,7 +449,7 @@ WordCloud.prototype = {
 						case VR:
 									var span=word.span;
 									//IE Handling for Differenet way of Rotation Transforms 
-									if(jQuery.browser.msie){
+									if(jQuery.browser && jQuery.browser.msie){
 										$(span).css("left",obj.x + xMul*h).css("top", obj.y + yMul*w);
 									}else{
 										$(span).css("left",obj.x + xMul*h - (w-h)/2).css("top", obj.y + yMul*w + (w-h)/2);							
