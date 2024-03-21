@@ -37,6 +37,9 @@ function Word(wordConfig){
 	this.fontOffset=wordConfig.fontOffset;
 	this.minWeight=wordConfig.minWeight;
 	this.padding_left=wordConfig.padding_left;
+    this.padding_right=wordConfig.padding_right;
+    this.padding_top=wordConfig.padding_top;
+    this.padding_bottom=wordConfig.padding_bottom;
 	
 	this.font_family=wordConfig.font_family;
 	this.font=null;
@@ -89,10 +92,23 @@ Word.prototype = {
 			this.padding_left=0;
 			
 		$(span).css("padding-left",this.padding_left+"px");
-		$(span).html(this.word);
+        if(this.padding_right==null)
+			this.padding_right=0;
+			
+		$(span).css("padding-right",this.padding_right+"px");
+        if(this.padding_top==null)
+            this.padding_top=0;
+        
+        $(span).css("padding-top",this.padding_top+"px");
+        if(this.padding_bottom==null)
+            this.padding_bottom=0;
+    
+        $(span).css("padding-bottom",this.padding_bottom+"px");
 		
-		this.width=$(span).outerWidth()+(this.padding_left*2);
-	    this.height=$(span).outerHeight();
+        $(span).html(this.word);
+		
+		this.width=$(span).outerWidth()+(this.padding_left*2)+(this.padding_right*2);
+	    this.height=$(span).outerHeight()+(this.padding_top*2)+(this.padding_bottom*2);
 	    
 	    $(span).remove();
 	    this.span=span;	
@@ -113,6 +129,9 @@ function WordCloud() {
 			cloud_font_family: null,
 			spaceDIVColor: 'white',
 			padding_left: null,
+            padding_right: null,
+            padding_top: null,
+            padding_bottom: null,
 			word_common_classes: null,
 			word_click : function(){},
 			word_mouseOver : function(){},
@@ -202,6 +221,15 @@ WordCloud.prototype = {
 				if(this.options.padding_left!=null)
 					wordConfigObj['padding_left']=this.options.padding_left;
 				
+                if(this.options.padding_right!=null)
+					wordConfigObj['padding_right']=this.options.padding_right;
+
+                if(this.options.padding_top!=null)
+					wordConfigObj['padding_top']=this.options.padding_top;
+
+                if(this.options.padding_bottom!=null)
+					wordConfigObj['padding_bottom']=this.options.padding_bottom;
+
 				wordConfigObj['word_class']=currWord.word_class;
 				
 				if(this.options.cloud_font_family!=null)
@@ -513,7 +541,6 @@ WordCloud.prototype = {
 			  wc._init(options);
 	  };
 })( jQuery );
-
 
 
 
